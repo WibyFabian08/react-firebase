@@ -43,17 +43,19 @@
     text-align: center;
     margin-left: 32%;
     margin-top: 10px;
+    &:hover {
+        background-color: #074c85;
+        color: white;
+        cursor: pointer;
+    }
+    &.disable {
+        background-color: grey;
+        border: 1px solid grey;
+        &:hover {
+            cursor: po;
+        }
+    }
 }
 
-.btn:hover {
-    background: none;
-    border: none;
-    background-color: #074c85;
-    color: white;
-    padding: 8px 30px;
-    justify-content: center;
-    border-radius: 4px;
-    text-align: center;
-    margin-left: 32%;
-    margin-top: 10px;
-}
+
+
