@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
     render() {
         return (
             <div>
-                <p>Login Page</p>
+                <p>Login Page  {this.props.popupProps}</p>
                 <button>Go to Register</button>
                 <button>Go to Dashboard</button>
             </div>
@@ -12,4 +13,8 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const reduxState = (state) => ({
+    popupProps: state.popup
+})
+
+export default connect(reduxState, null)(Login) ;

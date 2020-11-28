@@ -8,24 +8,26 @@ class Register extends React.Component {
         password: ''
     }
 
+    // fungsi mengambill input email dan password
     handleChangeText = (element) => {
         this.setState({
-            // untuk merubah state masing masing
+            // untuk merubah masing masing state
            [element.target.id]: element.target.value
         })
     }
 
+    // fungsi memasukan data ke firebase
     handleRegisterSubmit = () => {
         const {email, password} = this.state;
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-            console.log('succes : '. result);
+            console.log('succes : ', result);
         })
         .catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
-          });
+        });
     }
 
     render() {
