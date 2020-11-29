@@ -19,11 +19,17 @@ class Register extends React.Component {
     }
 
     // fungsi memasukan data ke firebase
-    handleRegisterSubmit = () => {
+    handleRegisterSubmit = async () => {
         const {email, password} = this.state;
 
-        this.props.registerAPI({email: email, password: password});
+        const response = await this.props.registerAPI({email: email, password: password}).catch(err => err);
 
+        if(response === true) {
+            this.setState({
+                email: '',
+                password: ''
+            })
+        }
     }
 
     render() {
@@ -31,11 +37,10 @@ class Register extends React.Component {
             <div className='form-register'>
                 <div className='auth-card'>
                     <p className='auth-title'>Register Page</p>
-                    <input id='email' className='input' placeholder="Email" type="text" onChange={this.handleChangeText}></input>
-                    <input id='password' className='input' placeholder="Password" type="password" onChange={this.handleChangeText}></input>
+                    <input id='email' className='input' placeholder="Email" type="text" onChange={this.handleChangeText} value={this.state.email}></input>
+                    <input id='password' className='input' placeholder="Password" type="password" onChange={this.handleChangeText} value={this.state.password}></input>
                     <Button onClick={this.handleRegisterSubmit} title='Register' loading={this.props.isLoading}></Button>
                 </div>
-                {/* <button>Go to Dashboard</button> */}
             </div>
         )
     }
@@ -46,6 +51,7 @@ const reduxState = (state) => ({
 })
 
 const reduxDispatch = (dispatch) => ({
+    // ini merupakan objek berupa function
     registerAPI: (data) => dispatch(registerUserAPI(data))
 })
 
