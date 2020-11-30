@@ -1,4 +1,4 @@
-import firebase from '../../firebase';
+import firebase, { database } from '../../firebase';
 
 // ini redux thunk asynchronous
 export const actionUserName = () => (dispatch) =>  {
@@ -36,7 +36,8 @@ export const loginUserAPI = (data) => (dispatch) => {
             const dataUSer = {
                 email: result.user.email,
                 uid: result.user.uid,
-                emailVerifired: result.user.emailVerifired
+                emailVerifired: result.user.emailVerifired,
+                refreshToken: result.user.refreshToken
             }
 
             dispatch({type: 'CHANGE_LOADING', value: false})
@@ -53,3 +54,11 @@ export const loginUserAPI = (data) => (dispatch) => {
         })
     })
 }
+
+export const addDataToAPI = (data) => (dispatch) => {
+    database.ref('notes/' + data.userId).push({
+        title: data.title,
+        content: data.content,
+        date: data.date
+    })
+} 

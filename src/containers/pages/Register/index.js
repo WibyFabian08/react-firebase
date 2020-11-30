@@ -10,7 +10,7 @@ class Register extends React.Component {
         password: ''
     }
 
-    // fungsi mengambill input email dan password
+    // fungsi mengambil input email dan password
     handleChangeText = (element) => {
         this.setState({
             // untuk merubah masing masing state
@@ -20,9 +20,9 @@ class Register extends React.Component {
 
     // fungsi memasukan data ke firebase
     handleRegisterSubmit = async () => {
-        const {email, password} = this.state;
+        // const {email, password} = this.state;
 
-        const response = await this.props.registerAPI({email: email, password: password}).catch(err => err);
+        const response = await this.props.registerAPI({email: this.state.email, password: this.state.password}).catch(err => err);
 
         if(response === true) {
             this.setState({

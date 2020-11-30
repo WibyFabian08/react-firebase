@@ -20,7 +20,7 @@ class Login extends React.Component {
     // fungsi memasukan data ke firebase
     handleLoginSubmit = async() => {
         const { history } = this.props;
-        const {email, password} = this.state;
+        const { email, password } = this.state;
 
         const response = await this.props.loginAPI({email: email, password: password}).catch(err => err);
         if(response === true) {
