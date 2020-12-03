@@ -23,7 +23,9 @@ class Login extends React.Component {
         const { email, password } = this.state;
 
         const response = await this.props.loginAPI({email: email, password: password}).catch(err => err);
-        if(response === true) {
+        
+        if(response) {
+            localStorage.setItem('userData', JSON.stringify(response));
             this.setState({
                 email: '',
                 password: ''
@@ -53,7 +55,7 @@ const reduxState = (state) => ({
 })
 
 const reduxDispatch = (dispatch) => ({
-    loginAPI : (data) => dispatch(loginUserAPI(data))
+    loginAPI: (data) => dispatch(loginUserAPI(data))
 })
 
 export default connect(reduxState, reduxDispatch)(Login) ;
