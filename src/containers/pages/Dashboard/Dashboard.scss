@@ -48,6 +48,19 @@
                 background: green;
                 color: white;
             }
+            &.cancle {
+                border: 2px solid orange;
+                color: orange;
+                &:hover {
+                    background: orange;
+                    color: white;
+                }
+            }
+        }
+        .action-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 40%;
         }
     }
     .card-content {
@@ -56,6 +69,12 @@
         padding: 16px;
         box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.1);
         margin-bottom: 16px;
+        transition: all ease 0.35s;
+        &:hover {
+            cursor: pointer;
+            transform: translateX(-2px) ;
+            background: rgba(0, 0, 0, 0.1);
+        }
         p {
             margin: 0px;
         }
